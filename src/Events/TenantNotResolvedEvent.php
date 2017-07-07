@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 31/10/15
  * Time: 22:18
  */
 
-namespace LeeMason\Tenantable\Events;
+namespace XyrinTech\Tenantable\Events;
 
 
-use LeeMason\Tenantable\Resolver;
+use XyrinTech\Tenantable\Resolver;
 
 class TenantNotResolvedEvent
 {

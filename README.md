@@ -1,8 +1,8 @@
 ## Tenantable
-[![Packagist License](https://poser.pugx.org/leemason/tenantable/license.png)](http://choosealicense.com/licenses/mit/)
-[![Latest Stable Version](https://poser.pugx.org/leemason/tenantable/version.png)](https://packagist.org/packages/leemason/tenantable)
-[![Total Downloads](https://poser.pugx.org/leemason/tenantable/d/total.png)](https://packagist.org/packages/leemason/tenantable)
-[![Build Status](https://travis-ci.org/leemason/tenantable.svg?branch=master)](https://travis-ci.org/leemason/tenantable)
+[![Packagist License](https://poser.pugx.org/xyrintech/tenantable/license.png)](http://choosealicense.com/licenses/mit/)
+[![Latest Stable Version](https://poser.pugx.org/xyrintech/tenantable/version.png)](https://packagist.org/packages/xyrintech/tenantable)
+[![Total Downloads](https://poser.pugx.org/xyrintech/tenantable/d/total.png)](https://packagist.org/packages/xyrintech/tenantable)
+[![Build Status](https://travis-ci.org/xyrintech/tenantable.svg?branch=master)](https://travis-ci.org/xyrintech/tenantable)
 
 The Laravel Tenantable package is designed to enable multi-tenancy based database connections on the fly without having to access the database ```::connection('name')``` in every database call.
 
@@ -11,7 +11,7 @@ The Laravel Tenantable package is designed to enable multi-tenancy based databas
 Just place require new package for your laravel installation via composer.json
 
 ```
-composer require leemason/tenantable
+composer require xyrintech/tenantable
 ```
 
 Then hit composer dump-autoload
@@ -22,18 +22,18 @@ You should ideally have this inserted into the array just after the ```Illuminat
 ### Laravel 5.1:
 
 ```php
-LeeMason\Tenantable\TenantableServiceProvider::class,
+XyrinTech\Tenantable\TenantableServiceProvider::class,
 ```
 
 Run the migrations
 ```php 
-artisan migrate --path /vendor/leemason/tenantable/migrations
+artisan migrate --path /vendor/xyrintech/tenantable/migrations
 ```
 
 Then in your workflow create tenants the Eloquent way:
 
 ```php
-$tenant = new \LeeMason\Tenantable\Tenant();
+$tenant = new \XyrinTech\Tenantable\Tenant();
 $tenant->domain = 'domain.com';
 $tenant->driver = 'mysql';
 $tenant->host = 'localhost';
@@ -83,24 +83,24 @@ This is how it works during an artisan console request:
 
 ## The Resolver Class
 
-The ```\LeeMason\Tenantable\Resolver``` class responsible for resolving and managing the active tenant during http and console access.
+The ```\XyrinTech\Tenantable\Resolver``` class responsible for resolving and managing the active tenant during http and console access.
 
-The ```TenantableServiceProvider``` registers this class as a singleton for use anywhere in your app via method injection, or by using the ```app('LeeMason\Tenantable\Resolver')``` helper function.
+The ```TenantableServiceProvider``` registers this class as a singleton for use anywhere in your app via method injection, or by using the ```app('XyrinTech\Tenantable\Resolver')``` helper function.
 
 This class provides you with methods to access or alter the active tenant:
 
 ```php
 //fetch the resolver class either via the app() function or by injecting
-$resolver = app('LeeMason\Tenantable\Resolver');
+$resolver = app('XyrinTech\Tenantable\Resolver');
 
 //check if a tenant was resolved
 $resolver->isResolved(); // returns bool
 
 //get the active tenant model
-$tenant = $resolver->getActiveTenant(); // returns instance of \LeeMason\Tenantable\Tenant or null
+$tenant = $resolver->getActiveTenant(); // returns instance of \XyrinTech\Tenantable\Tenant or null
 
 //set the active tenant
-$resolver->setActiveTenant(\LeeMason\Tenantable\Tenant $tenant); // fires a \LeeMason\Tenantable\Events\SetActiveTenantEvent event
+$resolver->setActiveTenant(\XyrinTech\Tenantable\Tenant $tenant); // fires a \XyrinTech\Tenantable\Events\SetActiveTenantEvent event
 
 //purge tenant connection
 $resolver->purgeTenantConnection();
@@ -111,7 +111,7 @@ $resolver->reconnectTenantConnection();
 
 ## The Tenant Model
 
-The ```\LeeMason\Tenantable\Tenant``` class is a very simple Eloquent model with some database connection attributes, and a meta attribute which is cast to a ```Illuminate\Support\Collection``` when accessed.
+The ```\XyrinTech\Tenantable\Tenant``` class is a very simple Eloquent model with some database connection attributes, and a meta attribute which is cast to a ```Illuminate\Support\Collection``` when accessed.
 
 Each attribute (except id,uuid,domain,driver,prefix,meta, and timestamps) are encrypted for security and are decrypted on access, encrypted on save automatically.
 
@@ -123,43 +123,43 @@ The model can be used in any way other Eloquent models are to create/read/update
 
 ```php
 //create by mass assignment
-\LeeMason\Tenantable\Tenant::create([
+\XyrinTech\Tenantable\Tenant::create([
     'domain' => 'http://...'
     ....
 ]);
 
 //call then save
-$tenant = \LeeMason\Tenantable\Tenant();
+$tenant = \XyrinTech\Tenantable\Tenant();
 $tenant->domain = 'http://...';
 ...
 $tenant->save();
 
 //fetch all tenants
-$tenant = \LeeMason\Tenantable\Tenant::all();
+$tenant = \XyrinTech\Tenantable\Tenant::all();
 
 //fetch by domain
-$tenant = \LeeMason\Tenantable\Tenant::where('domain', 'http://..')->first();
+$tenant = \XyrinTech\Tenantable\Tenant::where('domain', 'http://..')->first();
 ```
 
 ## Events
 
 The Tenantable packages produces a few events which can be consumed in your application
 
-```\LeeMason\Tenantable\Events\SetActiveTenantEvent(\LeeMason\Tenantable\Tenant $tenant)```
+```\XyrinTech\Tenantable\Events\SetActiveTenantEvent(\XyrinTech\Tenantable\Tenant $tenant)```
 
-This event is fired when a tenant is set as the active tenant and has a public ```$tenant``` property containing the ```\LeeMason\Tenantable\Tenant``` instance.
+This event is fired when a tenant is set as the active tenant and has a public ```$tenant``` property containing the ```\XyrinTech\Tenantable\Tenant``` instance.
 
 **Note** this may not be as a result of the resolver but is also fired when a tenant is set to active programatically.
 
-```\LeeMason\Tenantable\Events\TenantResolvedEvent(\LeeMason\Tenantable\Tenant $tenant)```
+```\XyrinTech\Tenantable\Events\TenantResolvedEvent(\XyrinTech\Tenantable\Tenant $tenant)```
 
-This event is fired when a tenant is resolved by the resolver and has a public ```$tenant``` property containing the ```\LeeMason\Tenantable\Tenant``` instance.
+This event is fired when a tenant is resolved by the resolver and has a public ```$tenant``` property containing the ```\XyrinTech\Tenantable\Tenant``` instance.
 
 **Note** this is only fired once per request as the resolver is responsible for this event.
 
-```\LeeMason\Tenantable\Events\TenantNotResolvedEvent(\LeeMason\Tenantable\Resolver $resolver)```
+```\XyrinTech\Tenantable\Events\TenantNotResolvedEvent(\XyrinTech\Tenantable\Resolver $resolver)```
 
-This event is fired when by the resolver when it cannot resolve a tenant and has a public ```$resolver``` property containing the ```\LeeMason\Tenantable\Resolver``` instance.
+This event is fired when by the resolver when it cannot resolve a tenant and has a public ```$resolver``` property containing the ```\XyrinTech\Tenantable\Resolver``` instance.
 
 **Note** this is only fired once per request as the resolver is responsible for this event.
 
@@ -173,13 +173,13 @@ To run the command foreach tenant you will need to fetch all tenants using ```Te
 
 ```php
 //fetch the resolver class either via the app() function or by injecting
-$resolver = app('LeeMason\Tenantable\Resolver');
+$resolver = app('XyrinTech\Tenantable\Resolver');
 
 //store the current tenant
 $resolvedTenant = $resolver->getActiveTenant();
 
 //fetch all tenants and loop / call command for each
-$tenants = \LeeMason\Tenantable\Tenant::all();
+$tenants = \XyrinTech\Tenantable\Tenant::all();
 foreach($tenants as $tenant){
     $resolver->setActiveTenant($tenant);
     $result = \Artisan::call('commandname', ['array' => 'of', 'the' => 'arguments']);
@@ -193,7 +193,7 @@ If you need to run the Artisan facade on the original default connection (ie not
 
 ```php
 //fetch the resolver class either via the app() function or by injecting
-$resolver = app('LeeMason\Tenantable\Resolver');
+$resolver = app('XyrinTech\Tenantable\Resolver');
 
 //store the current tenant
 $resolvedTenant = $resolver->getActiveTenant();

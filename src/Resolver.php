@@ -1,19 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 16/10/15
  * Time: 19:03
  */
 
-namespace LeeMason\Tenantable;
+namespace XyrinTech\Tenantable;
 
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use LeeMason\Tenantable\Events\SetActiveTenantEvent;
-use LeeMason\Tenantable\Events\TenantNotResolvedEvent;
-use LeeMason\Tenantable\Events\TenantResolvedEvent;
+use XyrinTech\Tenantable\Events\SetActiveTenantEvent;
+use XyrinTech\Tenantable\Events\TenantNotResolvedEvent;
+use XyrinTech\Tenantable\Events\TenantResolvedEvent;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;

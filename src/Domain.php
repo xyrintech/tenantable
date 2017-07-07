@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 31/10/15
  * Time: 17:23
  */
 
-namespace LeeMason\Tenantable;
+namespace XyrinTech\Tenantable;
 
 
 use Illuminate\Database\Eloquent\Model;

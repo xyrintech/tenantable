@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 31/10/15
  * Time: 22:10
  */
 
-namespace LeeMason\Tenantable\Events;
+namespace XyrinTech\Tenantable\Events;
 
 use Illuminate\Queue\SerializesModels;
-use LeeMason\Tenantable\Tenant;
+use XyrinTech\Tenantable\Tenant;
 
 abstract class TenantableEvent
 {

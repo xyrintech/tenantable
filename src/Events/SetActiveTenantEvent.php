@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 31/10/15
  * Time: 22:13
  */
 
-namespace LeeMason\Tenantable\Events;
+namespace XyrinTech\Tenantable\Events;
 
 
 class SetActiveTenantEvent extends TenantableEvent

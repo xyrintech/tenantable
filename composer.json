@@ -1,10 +1,10 @@
 {
-    "name": "leemason/tenantable",
+    "name": "xyrintech/tenantable",
     "description": "Laravel multi tenancy.",
     "license": "MIT",
     "authors": [
         {
-            "name": "leemason",
+            "name": "xyrintech",
             "email": "contact@nohalfpixels.com"
         }
     ],
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LeeMason\\Tenantable\\": "src"
+            "XyrinTech\\Tenantable\\": "src"
         }
     }
 }

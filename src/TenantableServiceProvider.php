@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leemason
+ * User: xyrintech
  * Date: 16/10/15
  * Time: 18:48
  */
 
-namespace LeeMason\Tenantable;
+namespace XyrinTech\Tenantable;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
